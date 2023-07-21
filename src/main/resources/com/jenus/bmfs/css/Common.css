@@ -1,0 +1,105 @@
+/*
+ * Copyright (C) 2022 Parisi Alessandro
+ * This file is part of MaterialFX (https://github.com/palexdev/MaterialFX).
+ *
+ * MaterialFX is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * MaterialFX is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with MaterialFX.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@import '../fonts/Fonts.css';
+@import 'MFXColors.css';
+
+/* Define the variables using :root */
+
+/* Continue defining styles for other buttons, or other components as needed */
+
+
+.header-label {
+	-fx-font-family: 'Visby Round CF Bold';
+	-fx-font-size: 14;
+	-fx-text-fill: -mfx-text-he;
+}
+
+.header-label .text {
+	-fx-font-smoothing-type: lcd;
+}
+
+.sub-header-label {
+	-fx-font-family: 'Visby Round CF Demi Bold';
+	-fx-text-fill: -mfx-text-he;
+}
+
+.sub-header-label .text {
+	-fx-font-smoothing-type: lcd;
+}
+
+.grid-pane {
+	-fx-background-color: transparent;
+}
+
+.grid-background {
+	-fx-background-color: white;
+	-fx-background-radius: 10;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.12, -1.0, 2.0);
+}
+
+.fs-1 {
+    -fx-font-size: 20px;
+}
+
+/* Define custom colors */
+.bs-blue { -fx-text-fill: #1d3b53; -mfx-color: #1d3b53; }
+.bs-indigo { -fx-text-fill: #6610f2; -mfx-color: #6610f2; }
+.bs-purple { -fx-text-fill: #6f42c1; -mfx-color: #6f42c1; }
+.bs-pink { -fx-text-fill: #e83e8c; -mfx-color: #e83e8c; }
+.bs-red { -fx-text-fill: #d6293e; -mfx-color: #d6293e; }
+.bs-orange { -fx-text-fill: #fd7e14; -mfx-color: #fd7e14; }
+.bs-yellow { -fx-text-fill: #f7c32e; -mfx-color: #f7c32e; }
+.bs-green { -fx-text-fill: #0cbc87; -mfx-color: #0cbc87; }
+.bs-teal { -fx-text-fill: #20c997; -mfx-color: #20c997; }
+.bs-cyan { -fx-text-fill: #17a2b8; -mfx-color: #17a2b8; }
+.bs-black { -fx-text-fill: #000; -mfx-color: #000; }
+.bs-white { -fx-text-fill: #fff; -mfx-color: #fff; }
+.bs-gray { -fx-text-fill: #747579; -mfx-color: #747579; }
+.bs-gray-dark { -fx-text-fill: #0b0a12; -mfx-color: #0b0a12; }
+.bs-gray-100 { -fx-text-fill: #f5f5f6; -mfx-color: #f5f5f6; }
+.bs-gray-200 { -fx-text-fill: #dfdfe3; -mfx-color: #dfdfe3; }
+.bs-gray-300 { -fx-text-fill: #c5c5c7; -mfx-color: #c5c5c7; }
+.bs-gray-400 { -fx-text-fill: #96969a; -mfx-color: #96969a; }
+.bs-gray-500 { -fx-text-fill: #85878a; -mfx-color: #85878a; }
+.bs-gray-600 { -fx-text-fill: #747579; -mfx-color: #747579; }
+.bs-gray-700 { -fx-text-fill: #5e5e5f; -mfx-color: #5e5e5f; }
+.bs-gray-800 { -fx-text-fill: #0b0a12; -mfx-color: #0b0a12; }
+.bs-gray-900 { -fx-text-fill: #0b0a12; -mfx-color: #0b0a12; }
+.bs-primary { -fx-text-fill: #5143d9; -mfx-color: #5143d9; }
+.bs-secondary { -fx-text-fill: #85878a; -mfx-color: #85878a; }
+.bs-success { -fx-text-fill: #0cbc87; -mfx-color: #0cbc87; }
+.bs-info { -fx-text-fill: #17a2b8; -mfx-color: #17a2b8; }
+.bs-warning { -fx-text-fill: #f7c32e; -mfx-color: #f7c32e; }
+.bs-danger { -fx-text-fill: #d6293e; -mfx-color: #d6293e; }
+.bs-light { -fx-text-fill: #f5f5f6; -mfx-color: #f5f5f6; }
+.bs-dark { -fx-text-fill: #0b0a12; -mfx-color: #0b0a12; }
+
+/* Define text colors */
+.bs-primary-text { -fx-text-fill: #0a58ca; -mfx-color: #0a58ca; }
+.bs-secondary-text { -fx-text-fill: #6c757d; -mfx-color: #6c757d; }
+.bs-success-text { -fx-text-fill: #146c43; -mfx-color: #146c43; }
+.bs-info-text { -fx-text-fill: #087990; -mfx-color: #087990; }
+.bs-warning-text { -fx-text-fill: #997404; -mfx-color: #997404; }
+.bs-danger-text { -fx-text-fill: #b02a37; -mfx-color: #b02a37; }
+.bs-light-text { -fx-text-fill: #6c757d; -mfx-color: #6c757d; }
+.bs-dark-text { -fx-text-fill: #495057; -mfx-color: #495057; }
+
+ .bs-danger .mfx-icon-wrapper .mfx-font-icon {
+    -mfx-color: -bs-danger;
+ }
