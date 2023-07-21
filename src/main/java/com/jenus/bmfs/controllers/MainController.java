@@ -131,10 +131,16 @@ public class MainController implements Initializable {
 
     private void initializeLoader() {
         MFXLoader loader = new MFXLoader();
+
         loader.addView(MFXLoaderBean.of("Enrollment", MFXResourceLoader.loadURL("views/enrollment-view.fxml"))
                 .setBeanToNodeMapper(() -> createToggle("fas-fingerprint", "Enrollment"))
                 .setDefaultRoot(true).get());
+
+        loader.addView(MFXLoaderBean.of("Identify", MFXResourceLoader.loadURL("views/identify-view.fxml"))
+                .setBeanToNodeMapper(() -> createToggle("fas-circle-check", "Identify"))
+                .get());
 //        fa-fingerprint fas-circle-dot
+//        <i class="fa-solid fa-chart-simple"></i>
 
         loader.setOnLoadedAction(beans -> {
             List<ToggleButton> nodes = beans.stream()

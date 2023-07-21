@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXIconWrapper?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,12 +23,31 @@
    <children>
       <HBox alignment="TOP_CENTER" prefHeight="603.0" prefWidth="1000.0" spacing="70.0">
          <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="50.0" />
+            <Insets bottom="20.0" left="20.0" right="20.0" top="30.0" />
          </padding>
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="530.0" prefWidth="318.0">
+            <VBox alignment="TOP_CENTER" prefHeight="530.0" prefWidth="318.0" spacing="30.0">
                <children>
-                  <GridPane alignment="CENTER_LEFT" prefHeight="355.0" prefWidth="318.0" vgap="20.0">
+                  <MFXButton style="-fx-background-radius: 50%;" styleClass="btn-image" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="120.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                           <viewport>
+                              <Rectangle2D height="120.0" minX="110.0" minY="120.0" width="110.0" />
+                           </viewport>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <HBox alignment="TOP_CENTER" prefHeight="61.0" prefWidth="318.0" spacing="20.0">
+                     <children>
+                        <MFXButton prefHeight="40.0" prefWidth="100.0" text="Capture">
+                           <styleClass>
+                              <String fx:value="outline-button" />
+                              <String fx:value="btn-lg" />
+                           </styleClass>
+                        </MFXButton>
+                     </children>
+                  </HBox>
+                  <GridPane alignment="CENTER_LEFT" prefHeight="311.0" prefWidth="318.0" vgap="20.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
@@ -71,9 +92,6 @@
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-               <padding>
-                  <Insets top="20.0" />
-               </padding>
             </VBox>
             <StackPane prefHeight="530.0" prefWidth="448.0">
                <children>
@@ -86,25 +104,38 @@
                         </ImageView>
                         <Text fx:id="txtFingerprintInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="Start finger capture" />
                      </children>
+                     <StackPane.margin>
+                        <Insets top="65.0" />
+                     </StackPane.margin>
                   </VBox>
-                  <VBox>
+                  <VBox alignment="TOP_CENTER">
                      <children>
+                        <MFXComboBox fx:id="comboSelectFienger" floatMode="BORDER" promptText="Select finger" />
                         <AnchorPane prefHeight="342.0" prefWidth="448.0">
                            <children>
-                              <MFXButton fx:id="btnCapture" layoutX="169.0" layoutY="197.0" style="-fx-background-radius: 50%;" text="Start">
+                              <MFXButton fx:id="btnCapture" layoutX="169.0" layoutY="228.0" style="-fx-background-radius: 50%;" text="Start">
                                  <styleClass>
                                     <String fx:value="btn-capture" />
                                     <String fx:value="fs-1" />
                                     <String fx:value="outline-button" />
                                  </styleClass>
                               </MFXButton>
-                              <MFXIconWrapper fx:id="iconHandThumb" layoutX="69.0" layoutY="173.0" rotate="-70.0" size="25.0" />
-                              <MFXIconWrapper fx:id="iconHandIndex" layoutX="141.0" layoutY="50.0" rotate="-20.6" size="25.0" />
-                              <MFXIconWrapper fx:id="iconHandMiddle" layoutX="243.0" layoutY="30.0" rotate="8.1" size="25.0" />
-                              <MFXIconWrapper fx:id="iconHandRing" layoutX="326.0" layoutY="73.0" rotate="28.1" size="25.0" />
-                              <MFXIconWrapper fx:id="iconHandLittle" layoutX="368.0" layoutY="160.0" rotate="48.8" size="25.0" />
+                              <MFXIconWrapper fx:id="iconHandThumb" layoutX="69.0" layoutY="203.0" rotate="-70.0" size="25.0" AnchorPane.topAnchor="203.0" />
+                              <MFXIconWrapper fx:id="iconHandIndex" layoutX="140.0" layoutY="78.0" rotate="-20.6" size="25.0" AnchorPane.topAnchor="78.0" />
+                              <MFXIconWrapper fx:id="iconHandMiddle" layoutX="242.0" layoutY="58.0" rotate="8.1" size="25.0" AnchorPane.topAnchor="58.0" />
+                              <MFXIconWrapper fx:id="iconHandRing" layoutX="326.0" layoutY="101.0" rotate="28.1" size="25.0" AnchorPane.topAnchor="101.0" />
+                              <MFXIconWrapper fx:id="iconHandLittle" layoutX="369.0" layoutY="189.0" rotate="48.8" size="25.0" AnchorPane.topAnchor="189.0" />
                            </children>
                         </AnchorPane>
+                        <MFXButton onAction="#saveUserFingerprints" prefHeight="40.0" prefWidth="145.0" text="Save">
+                           <styleClass>
+                              <String fx:value="outline-button" />
+                              <String fx:value="btn-lg" />
+                           </styleClass>
+                           <VBox.margin>
+                              <Insets top="90.0" />
+                           </VBox.margin>
+                        </MFXButton>
                      </children>
                   </VBox>
                </children>
@@ -114,8 +145,6 @@
    </children>
    <stylesheets>
       <URL value="@../css/TextFields.css" />
-      <URL value="@../css/Common.css" />
-      <URL value="@../css/MFXColors.css" />
       <URL value="@../css/Buttons.css" />
    </stylesheets>
 </VBox>

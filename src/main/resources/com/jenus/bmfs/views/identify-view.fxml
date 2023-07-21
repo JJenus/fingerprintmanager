@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXIconWrapper?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="grid-background" stylesheets="@../css/Buttons.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jenus.bmfs.controllers.IdentifyController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox alignment="CENTER" prefHeight="600.0" prefWidth="396.0" spacing="20.0">
+               <children>
+                  <MFXButton fx:id="btnCapture" onAction="#captureFingerprint" style="-fx-background-radius: 50%;" text="Capture">
+                     <styleClass>
+                        <String fx:value="outline-button" />
+                        <String fx:value="btn-capture" />
+                        <String fx:value="fs-1" />
+                     </styleClass>
+                  </MFXButton>
+                  <Text fx:id="txtFingerprintInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="Start finger capture" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="312.0" layoutY="10.0" prefHeight="600.0" prefWidth="396.0" spacing="5.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="90.0" prefWidth="139.0" styleClass="btn-image" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fx:id="imgUserImage" fitHeight="120.0" fitWidth="110.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" styleClass="btn-image">
+                           <viewport>
+                              <Rectangle2D height="120.0" width="110.0" />
+                           </viewport>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fs-1" text="Christiano Ronaldo" />
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username: " />
+                        <Text layoutX="170.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="makinde" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="389.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Age: " />
+                        <Text layoutX="170.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                     </children>
+                  </HBox>
+                  <StackPane prefHeight="265.0" prefWidth="396.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="244.0" prefWidth="396.0">
+                           <children>
+                              <ImageView fx:id="imgHand" fitHeight="253.0" fitWidth="286.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/handprint-n.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <StackPane.margin>
+                              <Insets top="10.0" />
+                           </StackPane.margin>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="363.0" prefWidth="396.0">
+                           <children>
+                              <AnchorPane prefHeight="342.0" prefWidth="448.0">
+                                 <children>
+                                    <MFXIconWrapper fx:id="iconHandThumb" layoutX="86.0" layoutY="127.0" rotate="-70.0" size="25.0" AnchorPane.topAnchor="127.0" />
+                                    <MFXIconWrapper fx:id="iconHandIndex" layoutX="136.0" layoutY="44.0" rotate="-20.6" size="25.0" AnchorPane.topAnchor="44.0" />
+                                    <MFXIconWrapper fx:id="iconHandMiddle" layoutX="207.0" layoutY="29.0" size="25.0" />
+                                    <MFXIconWrapper fx:id="iconHandRing" layoutX="266.0" layoutY="59.0" rotate="28.1" size="25.0" AnchorPane.topAnchor="59.0" />
+                                    <MFXIconWrapper fx:id="iconHandLittle" layoutX="296.0" layoutY="121.0" rotate="48.8" size="25.0" AnchorPane.topAnchor="121.0" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
