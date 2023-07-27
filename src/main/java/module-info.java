@@ -11,5 +11,7 @@ module com.jenus.bmfs {
     exports com.jenus.bfpas;
     exports com.jenus.bfpas.controllers;
     opens com.jenus.bfpas.controllers to javafx.fxml;
+    exports com.jenus.bfpas.utils;
+    opens com.jenus.bfpas.utils to javafx.fxml;
 }
 

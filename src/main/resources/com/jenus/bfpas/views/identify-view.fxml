@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="grid-background" stylesheets="@../css/Buttons.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jenus.bfpas.controllers.IdentifyController">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
@@ -45,11 +44,11 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fs-1" text="Christiano Ronaldo" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="fs-1" text="Firstname Lastname" />
                   <HBox alignment="CENTER">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username: " />
-                        <Text layoutX="170.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="makinde" />
+                        <Text layoutX="170.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="unique_username" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="10.0" layoutY="389.0">

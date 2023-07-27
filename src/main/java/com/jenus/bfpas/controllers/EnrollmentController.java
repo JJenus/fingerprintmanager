@@ -2,6 +2,7 @@ package com.jenus.bfpas.controllers;
 
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamResolution;
+import com.jenus.bfpas.MFXResourceLoader;
 import com.jenus.bfpas.models.Finger;
 import com.jenus.bfpas.models.Person;
 import com.jenus.bfpas.utils.FingerprintUtil;
@@ -279,8 +280,6 @@ public class EnrollmentController implements Initializable {
         else {
             iconHandLittle.getIcon().getStyleClass().add(selectedColor);
         }
-
-        System.out.println(selected);
     }
 
     private FingerprintUtil fingerprintUtil;
@@ -317,7 +316,9 @@ public class EnrollmentController implements Initializable {
                 txtFingerprintInfo.getStyleClass().add("bs-warning");
         }));
 
-        fingerprintUtil.startEnrollment();
+        fingerprintUtil.startEnrollment(new Image(
+                MFXResourceLoader.load("images/icons/bfpas-logo.png")
+        ));
         btnCapture.setDisable(true);
     }
 

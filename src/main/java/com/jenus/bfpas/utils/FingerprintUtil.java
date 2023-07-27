@@ -11,6 +11,9 @@ import javafx.scene.image.Image;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -45,63 +48,76 @@ public class FingerprintUtil {
      */
     public boolean initialize() {
         MESSAGE.set("Loading...");
-        // Initialize the fingerprint sensor
-        if (FingerprintSensorErrorCode.ZKFP_ERR_OK != FingerprintSensorEx.Init()) {
+
+        try {
+            // Initialize the fingerprint sensor
+            System.out.println("Starting...");
+            int err = FingerprintSensorEx.Init();
+            System.out.println("Failed or passed");
+
+            if (FingerprintSensorErrorCode.ZKFP_ERR_OK != err) {
+                statusCode = 1;
+                MESSAGE.set("Unable to initialize scanner");
+                System.out.println(MESSAGE.get());
+                return false;
+            }
+
+            // Open the device
+            int ret = FingerprintSensorEx.GetDeviceCount();
+            if (ret < 0) {
+                statusCode = 1;
+                MESSAGE.set("Plug in a scanner");
+                return false;
+            }
+
+            if (0 == (mhDevice = FingerprintSensorEx.OpenDevice(0))) {
+                statusCode = 1;
+                MESSAGE.set("Plug in properly");
+                return false;
+            }
+
+            // Initialize the fingerprint database
+            if (0 == (mhDB = FingerprintSensorEx.DBInit())) {
+                statusCode = 1;
+                MESSAGE.set("Unable to initialize database");
+                return false;
+            }
+
+            // Set the fingerprint format to ISO or ANSI
+            int nFmt = 0; // Default to ANSI
+            FingerprintSensorEx.DBSetParameter(mhDB, 5010, nFmt);
+
+            // Set other parameters if required
+            //FingerprintSensorEx.SetParameter(mhDevice, 2002, changeByte(nFakeFunOn), 4);
+            //Set DPI
+            //int nDPI = 750;
+            //FingerprintSensorEx.SetParameters(mhDevice, 3, changeByte(nDPI), 4);
+
+            byte[] paramValue = new byte[4];
+            int[] size = new int[1];
+            //GetFakeOn
+            //size[0] = 4;
+            //FingerprintSensorEx.GetParameters(mhDevice, 2002, paramValue, size);
+            //nFakeFunOn = byteArrayToInt(paramValue);
+
+            size[0] = 4;
+            FingerprintSensorEx.GetParameters(mhDevice, 1, paramValue, size);
+            fpWidth = byteArrayToInt(paramValue);
+            size[0] = 4;
+            FingerprintSensorEx.GetParameters(mhDevice, 2, paramValue, size);
+            fpHeight = byteArrayToInt(paramValue);
+            //width = fingerprintSensor.getImageWidth();
+            //height = fingerprintSensor.getImageHeight();
+            imgbuf = new byte[fpWidth*fpHeight];
+
+            // Start the worker thread for fingerprint capture and processing
+            mbStop = false;
+        }catch (Exception err){
+            MESSAGE.set("Please install required driver/libraries");
             statusCode = 1;
-            MESSAGE.set("Unable to initialize scanner");
+            System.out.println(err.getMessage());
             return false;
         }
-
-        // Open the device
-        int ret = FingerprintSensorEx.GetDeviceCount();
-        if (ret < 0) {
-            statusCode = 1;
-            MESSAGE.set("Plug in a scanner");
-            return false;
-        }
-
-        if (0 == (mhDevice = FingerprintSensorEx.OpenDevice(0))) {
-            statusCode = 1;
-            MESSAGE.set("Plug in properly");
-            return false;
-        }
-
-        // Initialize the fingerprint database
-        if (0 == (mhDB = FingerprintSensorEx.DBInit())) {
-            statusCode = 1;
-            MESSAGE.set("Unable to initialize database");
-            return false;
-        }
-
-        // Set the fingerprint format to ISO or ANSI
-        int nFmt = 0; // Default to ANSI
-        FingerprintSensorEx.DBSetParameter(mhDB, 5010, nFmt);
-
-        // Set other parameters if required
-        //FingerprintSensorEx.SetParameter(mhDevice, 2002, changeByte(nFakeFunOn), 4);
-        //Set DPI
-        //int nDPI = 750;
-        //FingerprintSensorEx.SetParameters(mhDevice, 3, changeByte(nDPI), 4);
-
-        byte[] paramValue = new byte[4];
-        int[] size = new int[1];
-        //GetFakeOn
-        //size[0] = 4;
-        //FingerprintSensorEx.GetParameters(mhDevice, 2002, paramValue, size);
-        //nFakeFunOn = byteArrayToInt(paramValue);
-
-        size[0] = 4;
-        FingerprintSensorEx.GetParameters(mhDevice, 1, paramValue, size);
-        fpWidth = byteArrayToInt(paramValue);
-        size[0] = 4;
-        FingerprintSensorEx.GetParameters(mhDevice, 2, paramValue, size);
-        fpHeight = byteArrayToInt(paramValue);
-        //width = fingerprintSensor.getImageWidth();
-        //height = fingerprintSensor.getImageHeight();
-        imgbuf = new byte[fpWidth*fpHeight];
-
-        // Start the worker thread for fingerprint capture and processing
-        mbStop = false;
 
         return true;
     }
@@ -198,21 +214,36 @@ public class FingerprintUtil {
         }
     }
 
-    public void startEnrollment(){
+    public void startEnrollment(Image image){
+        fingerPrintImage = image;
         scannerThread = new Thread(()->{
-            if(!initialize()){
-                return;
-            }
-
-            fingerPrintImage.progressProperty().addListener(((observableValue, oldValue, newVal) -> {
-                if (newVal.doubleValue() >= 1){
-                    enrollTemplate();
-                    if (enroll_idx == enroll_cnt){
-                        scannerThread.interrupt();
-                    }
+            new Thread(()->{
+                try (ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor()) {
+                    timer.schedule(() -> {
+                        if (MESSAGE.get().equalsIgnoreCase("Loading...")){
+                            statusCode = 1;
+                            MESSAGE.set("Please install required driver/libraries");
+                        }
+                    }, 8, TimeUnit.SECONDS);
                 }
-            }));
+            }).start();
+            try {
+                initialize();
+
+                fingerPrintImage.progressProperty().addListener(((observableValue, oldValue, newVal) -> {
+                    if (newVal.doubleValue() >= 1){
+                        enrollTemplate();
+                        if (enroll_idx == enroll_cnt){
+                            scannerThread.interrupt();
+                        }
+                    }
+                }));
+            } catch (Exception err){
+                System.out.println(err.getMessage());
+//                    err.printStackTrace(System.err);
+            }
         });
+
 
         scannerThread.start();
     }
