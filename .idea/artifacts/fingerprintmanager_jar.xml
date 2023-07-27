@@ -1,0 +1,27 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="fingerprintmanager:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/fingerprintmanager_jar</output-path>
+    <root id="archive" name="fingerprintmanager.jar">
+      <element id="module-output" name="fingerprintanalysis" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/github/palexdev/mfxlocalization/11.1.0/mfxlocalization-11.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/sarxos/webcam-capture/0.3.12/webcam-capture-0.3.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/nativelibs4java/bridj/0.7.0/bridj-0.7.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/20/javafx-graphics-20.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/20/javafx-controls-20-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/20/javafx-graphics-20-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/github/palexdev/mfxeffects/11.0.5/mfxeffects-11.0.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/github/palexdev/mfxresources/11.3.2/mfxresources-11.3.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/github/palexdev/mfxcore/11.3.0/mfxcore-11.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/20/javafx-base-20-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/github/palexdev/virtualizedfx/11.9.1/virtualizedfx-11.9.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/20/javafx-fxml-20-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/github/palexdev/materialfx/11.16.1/materialfx-11.16.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.2/slf4j-api-1.7.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/circuit/zkfinger/1.0/zkfinger-1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/20/javafx-controls-20.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/20/javafx-fxml-20.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/20/javafx-base-20.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/fr/brouillard/oss/cssfx/11.5.1/cssfx-11.5.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
